@@ -1,0 +1,58 @@
+// schema.prisma
+
+datasource db {
+  provider = "postgres"
+  url      =  "postgres://jgaxliez:EJbRPcL9WQDWEgh5RZylq3TQbToq_W5x@silly.db.elephantsql.com/jgaxliez" // Coloque a URL do seu banco de dados aqui
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model INSUMO {
+  ID_INSUMO           Int         @id @default(autoincrement())
+  Nome                String      @db.VarChar(45)
+  Descricao           String      @db.VarChar(200)
+  Custo_Unitario      Int
+  Data_de_validade    DateTime
+  Quantidade_em_estoque Int
+  Numero_Lote         Int
+  Fabricante          String      @db.VarChar(45)
+  Data_Fabricacao     DateTime
+  PERDA               PERDA[]
+  NOTIFICACAO         NOTIFICACAO[]
+  LEAD_TIME           LEAD_TIME[]
+}
+
+model PERDA {
+  ID_PERDA            Int         @id @default(autoincrement())
+  Data_da_perda       DateTime
+  Quantidade_perdida  Int
+  Motivo_da_perda     String      @db.VarChar(200)
+  Valor_perda         Int
+  INSUMO_ID_INSUMO    Int
+  INSUMO              INSUMO      @relation(fields: [INSUMO_ID_INSUMO], references: [ID_INSUMO])
+
+  @@index([INSUMO_ID_INSUMO])
+}
+
+model NOTIFICACAO {
+  ID_NOTIFICACAO      Int         @id @default(autoincrement())
+  Data_da_notificacao DateTime
+  Data_de_validade    DateTime
+  Tipo_de_notificacao String      @db.VarChar(45)
+  INSUMO_ID_INSUMO    Int
+  INSUMO              INSUMO      @relation(fields: [INSUMO_ID_INSUMO], references: [ID_INSUMO])
+
+  @@index([INSUMO_ID_INSUMO])
+}
+
+model LEAD_TIME {
+  ID_LEAD_TIME        Int         @id @default(autoincrement())
+  Data_de_chegada_do_insumo DateTime
+  INSUMO_ID_INSUMO    Int
+  Previsao_Consumo    DateTime
+  INSUMO              INSUMO      @relation(fields: [INSUMO_ID_INSUMO], references: [ID_INSUMO])
+
+  @@index([INSUMO_ID_INSUMO])
+}
