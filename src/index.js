@@ -14,6 +14,7 @@ const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
   origin: '*',
 });
+const port = process.env.PORT | 3000
 
 // Registra as rotas de insumo, perdas
 await fastify.register(insumoRoutes);
@@ -22,14 +23,6 @@ await fastify.register(notificacaoRoutes);
 await fastify.register(leadTimeRoutes);
 
 // Inicia o servidor
-const start = async () => {
-  try {
-    await fastify.listen({ port: process.env.PORT });
-    console.log('Server is running on http://localhost:3000');
-  } catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-};
-
-start();
+fastify.listen(port, () => {
+    console.log('app is listening on port : ', port)
+})
