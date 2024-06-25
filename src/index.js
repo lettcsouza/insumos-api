@@ -6,6 +6,7 @@ import cors from '@fastify/cors';
 import perdaRoutes from './routes/perda.routes.js';
 import notificacaoRoutes from './routes/notificacao.route.js';
 import leadTimeRoutes from './routes/lead_time.route.js';
+import dashboardRoutes from './routes/dashboards.routes.js';
 
 // Cria uma instância do Fastify
 const fastify = Fastify({ logger: true });
@@ -21,6 +22,7 @@ await fastify.register(insumoRoutes);
 await fastify.register(perdaRoutes);
 await fastify.register(notificacaoRoutes);
 await fastify.register(leadTimeRoutes);
+await fastify.register(dashboardRoutes);
 
 // Inicia o servidor
 fastify.listen(port, () => {
