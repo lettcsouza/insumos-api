@@ -24,7 +24,17 @@ await fastify.register(notificacaoRoutes);
 await fastify.register(leadTimeRoutes);
 await fastify.register(dashboardRoutes);
 
-// Inicia o servidor
-fastify.listen(port, () => {
-    console.log('app is listening on port : ', port)
-})
+// Defina as opções de escuta, incluindo a porta
+const options = {
+  port: port,
+  // Outras opções, se necessário
+};
+
+// Inicia o servidor com as opções definidas
+fastify.listen(options, (err) => {
+  if (err) {
+      console.error(err);
+      process.exit(1);
+  }
+  console.log('app is listening on port:', options.port);
+});
