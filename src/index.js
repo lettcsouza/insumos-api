@@ -15,7 +15,11 @@ const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
   origin: '*',
 });
-const port = process.env.PORT | 3000
+const port = process.env.PORT || 3000
+
+fastify.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 // Registra as rotas de insumo, perdas
 await fastify.register(insumoRoutes);
