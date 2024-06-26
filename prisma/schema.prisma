@@ -2,7 +2,7 @@
 
 datasource db {
   provider = "postgres"
-  url      =  "postgres://jgaxliez:EJbRPcL9WQDWEgh5RZylq3TQbToq_W5x@silly.db.elephantsql.com/jgaxliez" // Coloque a URL do seu banco de dados aqui
+  url      =  "postgresql://postgres:BuBCujAZWSoFRneSpdcmppSeutQzeiwY@roundhouse.proxy.rlwy.net:39767/railway" // Coloque a URL do seu banco de dados aqui
 }
 
 generator client {
