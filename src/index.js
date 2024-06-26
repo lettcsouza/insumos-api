@@ -22,11 +22,11 @@ fastify.get('/', (req, res) => {
 })
 
 // Registra as rotas de insumo, perdas
-await fastify.register(insumoRoutes);
-await fastify.register(perdaRoutes);
-await fastify.register(notificacaoRoutes);
-await fastify.register(leadTimeRoutes);
-await fastify.register(dashboardRoutes);
+fastify.register(insumoRoutes);
+fastify.register(perdaRoutes);
+fastify.register(notificacaoRoutes);
+fastify.register(leadTimeRoutes);
+fastify.register(dashboardRoutes);
 
 // Defina as opções de escuta, incluindo a porta
 const options = {
