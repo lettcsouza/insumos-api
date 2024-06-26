@@ -31,6 +31,7 @@ fastify.register(dashboardRoutes);
 // Defina as opções de escuta, incluindo a porta
 const options = {
   port: port,
+  host: '0.0.0.0'
   // Outras opções, se necessário
 };
 
